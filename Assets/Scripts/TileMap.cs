@@ -10,8 +10,17 @@ public class TileMap : MonoBehaviour {
 	int mapSizeY = 10;
 	int mapSizeX = 10;
 
+	public GameObject SelectedUnit;
+
 	// Use this for initialization
 	void Start () {
+		
+		GenerateMapTiles ();
+		GenerateMapVisuals();
+	}
+
+	void GenerateMapTiles ()
+	{
 		//allocate map tiles
 		tiles = new int[mapSizeX, mapSizeY];
 
@@ -31,16 +40,14 @@ public class TileMap : MonoBehaviour {
 
 		//init mountain tiles
 		tiles [4, 4] = 2;
-		tiles [4, 4] = 2;
-		tiles [4, 4] = 2;
-		tiles [4, 4] = 2;
-		tiles [4, 4] = 2;
+		tiles [5, 4] = 2;
+		tiles [6, 4] = 2;
+		tiles [7, 4] = 2;
+		tiles [8, 4] = 2;
 		tiles [4, 5] = 2;
 		tiles [4, 6] = 2;
 		tiles [8, 5] = 2;
 		tiles [8, 6] = 2;
-
-		GenerateMapVisuals();
 	}
 
 	//spawn prefabs
@@ -49,9 +56,18 @@ public class TileMap : MonoBehaviour {
 			for (int y = 0; y < mapSizeY; y++) {
 
 				TileType tt = tileTypes[tiles[x,y]];
-				Instantiate (tt.tileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity);
+				GameObject go = Instantiate (tt.tileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity);
+
+				ClickableTile ct = go.GetComponent<ClickableTile> ();
+				ct.tileX = x;
+				ct.tileY = y;
+				ct.map = this;
 			}
 		}
+	}
+
+	public void MoveUnitToTile(int x, int y) {
+		SelectedUnit.transform.position = new Vector3 (x, y, 0);
 	}
 
 	// Update is called once per frame
