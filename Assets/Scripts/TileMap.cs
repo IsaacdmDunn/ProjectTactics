@@ -15,14 +15,21 @@ public class TileMap : MonoBehaviour {
 		//allocate map tiles
 		tiles = new int[mapSizeX, mapSizeY];
 
-		//init map tiles
+		//init grass map tiles
 		for (int x = 0; x < mapSizeX; x++) {
 			for (int y = 0; y < mapSizeY; y++) {
 				tiles [x, y] = 0;
 			}
 		}
 
-		//mountain
+		//init swamp map tiles
+		for (int x = 3; x < 5; x++) {
+			for (int y = 0; y < 4; y++) {
+				tiles [x, y] = 1;
+			}
+		}
+
+		//init mountain tiles
 		tiles [4, 4] = 2;
 		tiles [4, 4] = 2;
 		tiles [4, 4] = 2;
