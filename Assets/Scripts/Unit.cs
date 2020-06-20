@@ -8,6 +8,8 @@ public class Unit : MonoBehaviour {
 	public int tileY;
 	public TileMap map;
 
+	int tileMovesPerTurn = 2;
+
 	public List<Node> currentPath = null;
 
 	void Update() {
@@ -24,5 +26,32 @@ public class Unit : MonoBehaviour {
 			}
 		}
 	}
+	//moves to the next tile in the path
+	public void MoveToTile() {
+		float remainingMoves = tileMovesPerTurn;
+		while(remainingMoves > 0) {
+		//if path exists
+			if (currentPath == null)
+			{
+				return;
+			}
+			//takes away moves when moving unit
+			remainingMoves-= map.TileMovementCost(currentPath[0].x, currentPath[0].y, currentPath[1].x, currentPath[1].y);
 
+			//move to next node on path
+			tileX = currentPath[1].x;
+			tileY = currentPath[1].y;
+			transform.position = map.TileCoordToWorld(tileX, tileY);
+		
+			//removes older node in the path list
+			currentPath.RemoveAt(0);
+
+			//if last tile in path then clear current path
+			if (currentPath.Count == 1)
+			{
+				currentPath = null;
+			}
+			
+		}
+	}
 }

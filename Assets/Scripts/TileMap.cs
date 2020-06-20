@@ -57,11 +57,23 @@ public class TileMap : MonoBehaviour {
 		tiles [8, 6] = 2;
 	}
 
-	float TileMovementCost(int x, int y) {
+	public float TileMovementCost(int sourceX, int sourceY, int targetX, int targetY) {
 		
-		TileType tt = tileTypes[tiles[x, y]];
+		TileType tt = tileTypes[tiles[sourceX, sourceY]];
 
-		return tt.movementCost;
+		if (UnitTileMobilityCheck(targetX, targetY) == false)
+		{
+			return Mathf.Infinity;
+		}
+
+		float cost = tt.movementCost;
+
+		//adds small cost to diagonal tiles to make the pathfinding avoid diagonals if stright lines cost the same amount of movement
+		if (sourceX != targetX && sourceY != targetY) {
+			cost += 0.001f;
+		}
+
+		return cost;
 	}
 
 	//spawn prefabs
@@ -84,9 +96,19 @@ public class TileMap : MonoBehaviour {
 		return new Vector3(x, y, 0);
 	}
 
+	public bool UnitTileMobilityCheck(int x, int y) {
+			return tileTypes[tiles[x,y]].isWalkable;
+	}
+
 	public void MoveUnitToTile(int x, int y) {
 		//clear units old path
 		SelectedUnit.GetComponent<Unit>().currentPath = null;
+
+		//if tile is unwalkable remove abilty to move to that tile
+		if (UnitTileMobilityCheck(x, y) == false)
+		{
+			return;
+		}
 
 		//pathfinding algorithgm
 		Dictionary<Node, float> distance = new Dictionary<Node, float> ();
@@ -130,7 +152,7 @@ public class TileMap : MonoBehaviour {
 
 			foreach (Node v in u.neighbours) {
 				//float alt = distance[u] + u.DistanceTo(v);
-				float alt = distance[u] + TileMovementCost(v.x, v.y);
+				float alt = distance[u] + TileMovementCost(u.x, u.y, v.x, v.y);
 				if (alt < distance[v]) {
 					distance[v] = alt;
 					previousNode[v] = u;
@@ -175,7 +197,7 @@ public class TileMap : MonoBehaviour {
 		//calc node neighbours
 		for (int x = 0; x < mapSizeX; x++) {
 			for (int y = 0; y < mapSizeY; y++) {
-
+				/* 4-way tile connectivity
 				if (x > 0) {
 					graph [x, y].neighbours.Add (graph [x - 1, y]);
 				}
@@ -185,6 +207,34 @@ public class TileMap : MonoBehaviour {
 				if (y > 0) {
 					graph [x, y].neighbours.Add (graph [x, y - 1]);
 				}
+				if (y < mapSizeY-1) {
+					graph [x, y].neighbours.Add (graph [x, y + 1]);
+				}*/
+				//left
+				if (x > 0) {
+					graph [x, y].neighbours.Add (graph [x - 1, y]);
+					if (y > 0) {
+						graph [x, y].neighbours.Add (graph [x - 1, y - 1]);
+					}
+					if (y < mapSizeY-1) {
+						graph [x, y].neighbours.Add (graph [x - 1, y + 1]);
+					}
+				}
+				//right
+				if (x < mapSizeX-1) {
+					graph [x, y].neighbours.Add (graph [x + 1, y]);
+					if (y > 0) {
+						graph [x, y].neighbours.Add (graph [x + 1, y - 1]);
+					}
+					if (y < mapSizeY-1) {
+						graph [x, y].neighbours.Add (graph [x + 1, y + 1]);
+					}
+				}
+				//up
+				if (y > 0) {
+					graph [x, y].neighbours.Add (graph [x, y - 1]);
+				}
+				//down
 				if (y < mapSizeY-1) {
 					graph [x, y].neighbours.Add (graph [x, y + 1]);
 				}
