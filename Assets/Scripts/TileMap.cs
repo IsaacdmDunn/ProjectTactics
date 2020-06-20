@@ -8,7 +8,7 @@ public class TileMap : MonoBehaviour {
 	int[,] tiles;
 	Node[,] graph;
 
-	List<Node> currentPath = null;
+	public List<Node> currentPath = null; 
 
 	int mapSizeY = 10;
 	int mapSizeX = 10;
@@ -17,7 +17,10 @@ public class TileMap : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		SelectedUnit.GetComponent<Unit>().tileX = (int)SelectedUnit.transform.position.x;
+		SelectedUnit.GetComponent<Unit>().tileY = (int)SelectedUnit.transform.position.y;
+		SelectedUnit.GetComponent<Unit>().map = this;
+
 		GenerateMapTiles ();
 		GeneratePathFindingGraph ();
 		GenerateMapVisuals();
@@ -28,7 +31,7 @@ public class TileMap : MonoBehaviour {
 		//allocate map tiles
 		tiles = new int[mapSizeX, mapSizeY];
 
-		//init grass map tiles
+		//init grass map tiles 
 		for (int x = 0; x < mapSizeX; x++) {
 			for (int y = 0; y < mapSizeY; y++) {
 				tiles [x, y] = 0;
@@ -52,6 +55,13 @@ public class TileMap : MonoBehaviour {
 		tiles [4, 6] = 2;
 		tiles [8, 5] = 2;
 		tiles [8, 6] = 2;
+	}
+
+	float TileMovementCost(int x, int y) {
+		
+		TileType tt = tileTypes[tiles[x, y]];
+
+		return tt.movementCost;
 	}
 
 	//spawn prefabs
@@ -92,73 +102,58 @@ public class TileMap : MonoBehaviour {
 		distance [source] = 0;
 		previousNode[source] = null;
 
+		//gives each node infinite distance incase node cant be reached
 		foreach (Node v in graph) {
 			if (v != source) {
 				distance[v] = Mathf.Infinity;
 				previousNode[v] = null;
 			}	
-
 			unvisitedNodes.Add(v);
+		}
 
-			while(unvisitedNodes.Count > 0) {
-				//u == unvisited node with smallest distance
-				Node u = null;
+		while(unvisitedNodes.Count > 0) {
+			//u == unvisited node with smallest distance
+			Node u = null;
 
-				foreach (Node possibleU in unvisitedNodes) {
-					if (u == null || distance[possibleU] < distance[u]) {
-						u = possibleU;
-					}
-				}
-
-				//target found break from loop
-				if (u == target) {
-					break;
-				}
-
-				unvisitedNodes.Remove(u);
-
-				foreach (Node vert in u.neighbours) {
-					float alt = distance[u] + u.DistanceTo(vert);
-					if (alt < distance[vert]) {
-						distance[vert] = alt;
-						previousNode[vert] = u;
-					}
+			foreach (Node possibleU in unvisitedNodes) {
+				if (u == null || distance[possibleU] < distance[u]) {
+					u = possibleU;
 				}
 			}
 
-			//if shortest path found or no possible path found
-			if(previousNode[target] == null){	//no route
-				return;
+			//target found break from loop
+			if (u == target) {
+				break;
 			}
 
-			List<Node> currentPath = new List<Node>();
-			Node curr = target;
+			unvisitedNodes.Remove(u);
 
-			while (curr != null) {
-				currentPath.Add(curr);
-				curr = previousNode[curr];
+			foreach (Node v in u.neighbours) {
+				//float alt = distance[u] + u.DistanceTo(v);
+				float alt = distance[u] + TileMovementCost(v.x, v.y);
+				if (alt < distance[v]) {
+					distance[v] = alt;
+					previousNode[v] = u;
+				}
 			}
-
-			//inverts path
-			currentPath.Reverse();
-			SelectedUnit.GetComponent<Unit>().currentPath = currentPath;
-		}
-	}
-
-	public class Node {
-		public List<Node> neighbours;
-		public int x;
-		public int y;
-
-		public Node() {
-			neighbours = new List<Node>();
 		}
 
-		public float DistanceTo(Node n) {
-
-			return Vector2.Distance( new Vector2(x,y), new Vector2(n.x, n.y));
+		//if shortest path found or no possible path found
+		if(previousNode[target] == null){	//no route
+			return;
 		}
 
+		List<Node> currentPath = new List<Node>();
+		Node curr = target;
+
+		while (curr != null) {
+			currentPath.Add(curr);
+			curr = previousNode[curr];
+		}
+
+		//inverts path
+		currentPath.Reverse();
+		SelectedUnit.GetComponent<Unit>().currentPath = currentPath;
 	}
 
 	void GeneratePathFindingGraph () 
