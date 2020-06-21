@@ -10,8 +10,8 @@ public class CameraController : MonoBehaviour {
     public GameObject cameraObject;
 
     float x = 4.5f, y = 4.5f;
-    float camera1RotationX;
-    float camera2Rotation;
+    
+    float cameraRotation;
  
     //set camera to iso when game starts
     void Start()
@@ -51,13 +51,13 @@ public class CameraController : MonoBehaviour {
 
         //rotates camera
         if (Input.GetKeyDown(KeyCode.Q)) {
-            camera2Rotation -= 90;
+            cameraRotation -= 90;
         }
         else if (Input.GetKeyDown(KeyCode.E)) {
-            camera2Rotation += 90;
+            cameraRotation += 90;
         }
-
-        transform.rotation = Quaternion.Euler(0, 0, camera2Rotation);
+        //light.transform.rotation = Quaternion.Euler(0, lightRotation, 0);
+        transform.rotation = Quaternion.Euler(0, 0, cameraRotation);
         transform.position = new Vector3(x, y, 0);
     }
 }
