@@ -10,8 +10,8 @@ public class TileMap : MonoBehaviour {
 
 	public List<Node> currentPath = null; 
 
-	int mapSizeY = 10;
-	int mapSizeX = 10;
+	int mapSizeY = 30;
+	int mapSizeX = 30;
 
 	public GameObject SelectedUnit;
 
@@ -31,6 +31,12 @@ public class TileMap : MonoBehaviour {
 		//allocate map tiles
 		tiles = new int[mapSizeX, mapSizeY];
 
+		for (int x = 0; x < mapSizeX; x++) {
+			for (int y = 0; y < mapSizeY; y++) {
+				tiles [x, y] = Random.Range(0, 3);
+			}
+		}
+		/*
 		//init grass map tiles 
 		for (int x = 0; x < mapSizeX; x++) {
 			for (int y = 0; y < mapSizeY; y++) {
@@ -54,7 +60,7 @@ public class TileMap : MonoBehaviour {
 		tiles [4, 5] = 2;
 		tiles [4, 6] = 2;
 		tiles [8, 5] = 2;
-		tiles [8, 6] = 2;
+		tiles [8, 6] = 2;*/
 	}
 
 	public float TileMovementCost(int sourceX, int sourceY, int targetX, int targetY) {

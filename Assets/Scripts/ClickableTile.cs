@@ -9,10 +9,11 @@ public class ClickableTile : MonoBehaviour {
 	public TileMap map;
 
 	// when tile is clicked
-	void OnMouseUp () {
-		Debug.Log ("click");
+	void OnMouseOver () {
+		if (Input.GetMouseButtonDown(1)) {
+			map.MoveUnitToTile (tileX, tileY);
+		}
 
-		map.MoveUnitToTile (tileX, tileY);
 	}
 
 }
