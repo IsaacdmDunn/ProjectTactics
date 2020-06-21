@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
+    //camera objects
     public Camera cam1;
     public Camera cam2;
+    public GameObject cameraObject;
+
+    float x, y;
  
+    //set camera to iso when game starts
     void Start()
     {
         cam1.enabled = true;
         cam2.enabled = false;
     }
 
+    //update every frame
     void Update()
     {
-
+        //switch between iso and top-down view by pressing V
         if (Input.GetKeyDown(KeyCode.V) && (cam1.enabled == true || cam2.enabled == false))
         {
             cam1.enabled = false;
@@ -26,5 +32,21 @@ public class CameraController : MonoBehaviour {
             cam2.enabled = false;
             cam1.enabled = true;
         }
+
+        //moves camera with WASD
+        if (Input.GetKey(KeyCode.W)) {
+            y += 0.05f;
+        }
+        else if (Input.GetKey(KeyCode.S)) {
+            y -= 0.05f;
+        }
+        if (Input.GetKey(KeyCode.A)) {
+            x -= 0.05f;
+        }
+        else if (Input.GetKey(KeyCode.D)) {
+            x += 0.05f;
+        }
+
+        transform.position = new Vector3(x, y, 0);
     }
 }
