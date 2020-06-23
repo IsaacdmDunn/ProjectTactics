@@ -7,6 +7,8 @@ public class TileMap : MonoBehaviour {
 	public TileType[] tileTypes;
 	int[,] tiles;
 	Node[,] graph;
+	
+	GameObject go;
 
 	public List<Node> currentPath = null; 
 
@@ -33,7 +35,7 @@ public class TileMap : MonoBehaviour {
 
 		for (int x = 0; x < mapSizeX; x++) {
 			for (int y = 0; y < mapSizeY; y++) {
-				tiles [x, y] = Random.Range(0, 3);
+				tiles [x, y] = Random.Range(0, 5);
 			}
 		}
 		/*
@@ -88,9 +90,28 @@ public class TileMap : MonoBehaviour {
 			for (int y = 0; y < mapSizeY; y++) {
 
 				TileType tt = tileTypes[tiles[x,y]];
-				GameObject go = Instantiate (tt.tileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity);
+				switch (tiles[x,y])
+				{
+					case 2:
+						go = Instantiate (tt.tileVisualPrefab, new Vector3(x, y, -0.45f), Quaternion.Euler(0,180,0));
+					break;
+
+					case 3:
+						go = Instantiate (tt.tileVisualPrefab, new Vector3(x, y, 0f), Quaternion.Euler(0,180,0));
+					break;
+
+					case 4:
+						go = Instantiate (tt.tileVisualPrefab, new Vector3(x, y, 0f), Quaternion.Euler(0,180,0));
+					break;
+
+					default:
+						go = Instantiate (tt.tileVisualPrefab, new Vector3(x, y, 0f), Quaternion.Euler(0,180,0));
+						break;
+				}
+				
 
 				ClickableTile ct = go.GetComponent<ClickableTile> ();
+				Debug.Log(tiles[x,y]);
 				ct.tileX = x;
 				ct.tileY = y;
 				ct.map = this;
