@@ -10,6 +10,8 @@ public class MainMenuButtons : MonoBehaviour {
     public GameObject HelpButton;
     public GameObject QuitButton;
 
+    public GameObject HelpMenu;
+
     //plays the game scene when the play button is pressed
     public void PlayButtonPressed()
     {
@@ -25,6 +27,6 @@ public class MainMenuButtons : MonoBehaviour {
     //displays the help menu when the help button is pressed
     public void HelpButtonPressed()
     {
-
+        HelpMenu.SetActive(true);
     }
 }
