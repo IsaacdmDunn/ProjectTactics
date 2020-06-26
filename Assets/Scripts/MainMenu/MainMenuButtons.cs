@@ -15,7 +15,7 @@ public class MainMenuButtons : MonoBehaviour {
     //plays the game scene when the play button is pressed
     public void PlayButtonPressed()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("CharacterMenu");
     }
 
     //quits the game when the quit button is pressed
