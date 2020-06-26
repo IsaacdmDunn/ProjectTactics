@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class HoverOverAbilityInfo : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	public GameObject AbilityText;
+
+	public void OnMouseEnterAbility() {
+		AbilityText.SetActive(true);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	public void OnMouseExitAbility() {
+		AbilityText.SetActive(false);
 	}
 }

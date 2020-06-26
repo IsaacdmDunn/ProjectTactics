@@ -12,6 +12,7 @@ public class CharacterDropDownMenu : MonoBehaviour {
 	public GameObject Portrait5;
 
 	public Text AbilityIcon1;
+	public Text AbilityDescription;
 
 	public void DropDownMenuChange(int selected)
 	{
@@ -25,6 +26,7 @@ public class CharacterDropDownMenu : MonoBehaviour {
 				Portrait5.SetActive(false);
 
 				AbilityIcon1.text = "Forager";
+				AbilityDescription.text = "Can forage for more food in the forests.";
 				break;
 			case 1:
 				Portrait1.SetActive(false);
@@ -33,7 +35,8 @@ public class CharacterDropDownMenu : MonoBehaviour {
 				Portrait4.SetActive(false);
 				Portrait5.SetActive(false);
 
-				AbilityIcon1.text = "Observant";
+				AbilityIcon1.text = "Light-Footed";
+				AbilityDescription.text = "Can avoid encounters with hostiles more effectively.";
 				break;
 			case 2:
 				Portrait1.SetActive(false);
@@ -43,6 +46,7 @@ public class CharacterDropDownMenu : MonoBehaviour {
 				Portrait5.SetActive(false);
 
 				AbilityIcon1.text = "Cultist";
+				AbilityDescription.text = "understands symbols of the cosmic horrors.";
 				break;
 			case 3:
 				Portrait1.SetActive(false);
@@ -52,6 +56,7 @@ public class CharacterDropDownMenu : MonoBehaviour {
 				Portrait5.SetActive(false);
 
 				AbilityIcon1.text = "Scholar";
+				AbilityDescription.text = "Able to learn experience from encounters.";
 				break;
 			case 4:
 				Portrait1.SetActive(false);
@@ -61,6 +66,7 @@ public class CharacterDropDownMenu : MonoBehaviour {
 				Portrait5.SetActive(true);
 
 				AbilityIcon1.text = "Soldier";
+				AbilityDescription.text = "Finds extra amno when searching for supplies.";
 				break;
 		}
 	}
