@@ -1305,7 +1305,7 @@ Transform:
   - {fileID: 709648438}
   - {fileID: 338579464}
   m_Father: {fileID: 1370509889}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &468475611
 MonoBehaviour:
@@ -1637,11 +1637,11 @@ RectTransform:
   - {fileID: 80703080}
   - {fileID: 750972545}
   m_Father: {fileID: 1370509889}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -400}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &779029871
@@ -2036,6 +2036,46 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1039596932}
   m_CullTransparentMesh: 0
+--- !u!1 &1061446311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1061446313}
+  - component: {fileID: 1061446312}
+  m_Layer: 0
+  m_Name: StatTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1061446312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061446311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6c4dc2b85f5c54fb3897a484a6e90b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1061446313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061446311}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 398.22513, y: 375.02307, z: -165.85687}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1137351618
 GameObject:
   m_ObjectHideFlags: 0
@@ -2133,7 +2173,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1370509889}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -2413,6 +2453,7 @@ RectTransform:
   - {fileID: 2096820186}
   - {fileID: 1137351619}
   - {fileID: 277750112}
+  - {fileID: 1685607052}
   - {fileID: 1372874375}
   - {fileID: 1167581553}
   - {fileID: 2062323528}
@@ -2451,10 +2492,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -262, y: -9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1685607052}
+  m_Children: []
   m_Father: {fileID: 1370509889}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1372874376
 MonoBehaviour:
@@ -2677,12 +2717,12 @@ RectTransform:
   - {fileID: 1039596933}
   - {fileID: 8434966}
   - {fileID: 1470940188}
-  m_Father: {fileID: 1372874375}
-  m_RootOrder: 0
+  m_Father: {fileID: 1370509889}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 74}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 240, y: -340}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1685607053
@@ -2886,7 +2926,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1370509889}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -2925,19 +2965,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Health:
-
-    Days of rations:
-
-    Meds:
-
-    Attack:
-
-    Defence:
-
-    Mysticism:
-
-    Rad Resistance:'
+  m_Text: "Health:\t\t\t\t\t\t10\nDays of rations:\t\t3\nMeds:\t\t\t\t\t\t1\nAttack:\t\t\t\t\t\t1\nDefence:\t\t\t\t\t3\nMysticism:\t\t\t\t0\t"
 --- !u!222 &2062323530
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -111,7 +111,6 @@ public class TileMap : MonoBehaviour {
 				
 
 				ClickableTile ct = go.GetComponent<ClickableTile> ();
-				Debug.Log(tiles[x,y]);
 				ct.tileX = x;
 				ct.tileY = y;
 				ct.map = this;
