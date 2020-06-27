@@ -5430,4 +5430,14 @@ MonoBehaviour:
       type: 2}
     movementCost: 2
     isWalkable: 1
+  - name: CultManor
+    tileVisualPrefab: {fileID: 1427614688630168, guid: d01d3da3a5130624c96ac3964210407b,
+      type: 2}
+    movementCost: 1
+    isWalkable: 1
+  - name: CultTower
+    tileVisualPrefab: {fileID: 1515579360455974, guid: 6572474baab98b745a045f31222be237,
+      type: 2}
+    movementCost: 1
+    isWalkable: 1
   SelectedUnit: {fileID: 982885333}

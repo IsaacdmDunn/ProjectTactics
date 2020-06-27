@@ -35,7 +35,17 @@ public class TileMap : MonoBehaviour {
 
 		for (int x = 0; x < mapSizeX; x++) {
 			for (int y = 0; y < mapSizeY; y++) {
-				tiles [x, y] = Random.Range(0, 5);
+				int rand = Random.Range(0, 100);
+				if(rand <= 95) {
+					tiles [x, y] = Random.Range(0, 5);
+				}
+				else if(rand <= 98) {
+					tiles [x, y] = 5;
+				}
+				else {
+					tiles [x, y] = 6;
+				}
+				
 			}
 		}
 		/*
