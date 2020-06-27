@@ -48,6 +48,7 @@ public class CharacterDropDownMenu : MonoBehaviour {
 				CharacterStats.attack = 3;
 				CharacterStats.defence = 1;
 				CharacterStats.mysticism = 5;
+				CharacterStats.characterName = "Lena the Survivor";
 				UpdateStatText();
 				break;
 			case 1:
@@ -65,6 +66,7 @@ public class CharacterDropDownMenu : MonoBehaviour {
 				CharacterStats.attack = 2;
 				CharacterStats.defence = 2;
 				CharacterStats.mysticism = 7;
+				CharacterStats.characterName = "Lance the Dectective";
 				UpdateStatText();
 				break;
 			case 2:
@@ -82,6 +84,7 @@ public class CharacterDropDownMenu : MonoBehaviour {
 				CharacterStats.attack = 4;
 				CharacterStats.defence = 1;
 				CharacterStats.mysticism = 10;
+				CharacterStats.characterName = "Danielle the Cultist";
 				UpdateStatText();
 				break;
 			case 3:
@@ -99,6 +102,7 @@ public class CharacterDropDownMenu : MonoBehaviour {
 				CharacterStats.attack = 1;
 				CharacterStats.defence = 4;
 				CharacterStats.mysticism = 7;
+				CharacterStats.characterName = "Sebastian the Scientist";
 				UpdateStatText();
 				break;
 			case 4:
@@ -116,6 +120,7 @@ public class CharacterDropDownMenu : MonoBehaviour {
 				CharacterStats.attack = 4;
 				CharacterStats.defence = 3;
 				CharacterStats.mysticism = 0;
+				CharacterStats.characterName = "Ace the Soldier";
 				UpdateStatText();
 				break;
 		}
